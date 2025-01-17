@@ -1,5 +1,6 @@
 import path from 'path';
-import express, { response, Router } from 'express'
+import express, {  Router } from 'express'
+import compression from 'compression';
 
 interface Options {
     port: number;
@@ -26,6 +27,7 @@ export class Server {
         //* Middelawares
         this.app.use( express.json() ); // Raw
         this.app.use( express.urlencoded({extended: true}) ); // x-www-form-urlencoded
+        this.app.use ( compression());
 
         //* Public Folder
         this.app.use(express.static(this.publicPath));
